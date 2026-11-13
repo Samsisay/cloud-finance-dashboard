@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Finance Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="/app.js"></script>
+</head>
+<body>
+
+<div id="auth-container" class="auth-container">
+  <div class="auth-card">
+    <h1>Cloud<span>Finance</span></h1>
+    <p class="muted">Your personal finance dashboard</p>
+
+    <div id="login-section">
+      <h2>Welcome back</h2>
+      <form id="login-form">
+        <input
+          id="login-email"
+          type="email"
+          placeholder="Email address"
+          required
+        >
+        <input
+          id="login-password"
+          type="password"
+          placeholder="Password"
+          required
+        >
+        <button type="submit">Log in</button>
+      </form>
+      <p>Don't have an account?
+        <button type="button" id="show-signup">Sign up</button>
+      </p>
+    </div>
+
+    <div id="signup-section" hidden>
+      <h2>Create your account</h2>
+      <form id="signup-form">
+        <input
+          id="signup-email"
+          type="email"
+          placeholder="Email address"
+          required
+        >
+        <input
+          id="signup-password"
+          type="password"
+          placeholder="Password"
+          minlength="8"
+          required
+        >
+        <button type="submit">Create account</button>
+      </form>
+      <p>Already have an account?
+        <button type="button" id="show-login">Log in</button>
+      </p>
+    </div>
+
+    <div id="confirm-section" hidden>
+      <h2>Verify your email</h2>
+      <p>Enter the verification code sent to your email.</p>
+      <form id="confirm-form">
+        <input
+          id="confirm-code"
+          type="text"
+          placeholder="Verification code"
+          required
+        >
+        <button type="submit">Verify account</button>
+      </form>
+    </div>
+
+    <p id="auth-message" role="status"></p>
+  </div>
+</div>
+
+<div class="app" id="dashboard-container" hidden>
+<aside class="sidebar">
+<h2 class="brand">Cloud<span>Finance</span></h2>
+<button type="button" id="logout-button">Log out</button>
+<p class="nav-label">MENU</p>
+<a class="nav-item active" href="#overview">■ Overview</a>
+<a class="nav-item" href="#transactions">↔ Transactions</a>
+<a class="nav-item" href="#savings">■ Savings goals</a>
+<div class="sidebar-note">
+<span class="status-dot"></span> Learning mode
+<p>Sample data only</p>
+</div>
+</aside>
+<main class="main-content">
+<header class="topbar">
+<div>
+<p class="eyebrow">YOUR MONEY, AT A GLANCE</p>
+<h1>Financial Overview</h1>
+<p class="muted">Welcome to your personal finance dashboard.</p>
+</div>
+<span class="demo-badge">DEMO ACCOUNT</span>
+</header>
+<section id="overview" class="summary-grid">
+<article class="card">
+<p class="card-label">Total balance</p>
+<h2 id="balance">$0.00</h2>
+<p class="muted">Income minus expenses</p>
+</article>
+<article class="card">
+<p class="card-label">Monthly income</p>
+<h2 id="income" class="green">$0.00</h2>
+<p class="muted">Money received</p>
+</article>
+<article class="card">
+<p class="card-label">Monthly expenses</p>
+<h2 id="expenses" class="red">$0.00</h2>
+<p class="muted">Money spent</p>
+</article>
+<article class="card">
+<p class="card-label">Savings rate</p>
+<h2 id="savings-rate">0%</h2>
+<p class="muted">Income kept after spending</p>
+</article>
+</section>
+<section class="content-grid">
+<article id="savings" class="card savings-card">
+<div class="section-heading">
+<div>
+<p class="card-label">YOUR NEXT MILESTONE</p>
+<h2>Emergency fund</h2>
+</div>
+<span class="goal-icon">■</span>
+</div>
+<p class="muted">Savings goal</p>
+<h2 id="goal-amount">$5,000.00</h2>
+<div class="progress-track">
+<div id="goal-progress" class="progress-fill"></div>
+</div>
+<div class="progress-labels">
+<span id="goal-saved">$1,500 saved</span>
+<span id="goal-percent">30%</span>
+</div>
+</article>
+<article class="card">
+<p class="card-label">SPENDING BREAKDOWN</p>
+<h2>Where your money goes</h2>
+<div id="category-breakdown" class="category-list"></div>
+</article>
+</section>
+<section id="transactions" class="card transactions-card">
+<div class="section-heading">
+<div>
+<p class="card-label">YOUR ACTIVITY</p>
+<h2>Recent transactions</h2>
+</div>
+<span class="muted">Sample entries</span>
+</div>
+<p id="edit-message" hidden>
+  Editing transaction. Change the fields and save your changes.
+  <button type="button" id="cancel-edit">Cancel</button>
+</p>
+<form id="transaction-form" class="transaction-form">
+<input id="description" type="text" placeholder="Description"
+maxlength="60" required>
+<input id="amount" type="number" placeholder="Amount ($)"
+min="0.01" step="0.01" required>
+<select id="type" aria-label="Transaction type">
+<option value="expense">Expense</option>
+<option value="income">Income</option>
+</select>
+<select id="category" aria-label="Category">
+<option>Housing</option><option>Groceries</option>
+<option>Transportation</option><option>Entertainment</option>
+<option>Salary</option><option>Other</option>
+</select>
+<button type="submit">+ Add transaction</button>
+</form>
+<div class="table-wrap">
+<table>
+<thead>
+  <tr>
+    <th>TRANSACTION</th>
+    <th>DATE</th>
+    <th>CATEGORY</th>
+    <th>TYPE</th>
+    <th class="amount-cell">AMOUNT</th>
+    <th>ACTION</th>
+  </tr>
+</thead>
+<tbody id="transaction-list"></tbody>
+</table>
+</div>
+<p class="footer-note">Educational demo only. Sample data resets on reload.</p>
+</section>
+</main>
+</div>
+</body>
+</html>

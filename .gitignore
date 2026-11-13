@@ -1,0 +1,28 @@
+
+# Dependencies
+node_modules/
+
+# Amplify temporary files
+.amplify/
+
+# Build output
+dist/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Local editor settings
+.vscode/
+
+# Old backup files
+app-backup.js
