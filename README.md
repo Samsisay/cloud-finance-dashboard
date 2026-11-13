@@ -80,17 +80,16 @@ Security was an important consideration during development.
 
 ## Project Structure
 
-```text
 cloud-finance-dashboard/
 │
 ├── amplify/
 │   ├── auth/
 │   │   └── resource.ts
-│   │
 │   ├── data/
 │   │   └── resource.ts
-│   │
-│   └── backend.ts
+│   ├── backend.ts
+│   ├── package.json
+│   └── tsconfig.json
 │
 ├── index.html
 ├── style.css
@@ -98,9 +97,8 @@ cloud-finance-dashboard/
 ├── package.json
 ├── package-lock.json
 ├── amplify_outputs.json
-├── vite.config.js
+├── .gitignore
 └── README.md
-```
 
 Note: The `dist/` directory is generated when building the production frontend.
 
@@ -116,7 +114,7 @@ Note: The `dist/` directory is generated when building the production frontend.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/samsisay
+git clone https://github.com/Samsisay/cloud-finance-dashboard.git
 cd cloud-finance-dashboard
 ```
 
