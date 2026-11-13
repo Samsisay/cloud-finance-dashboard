@@ -225,3 +225,38 @@ Potential enhancements include:
 **CloudFinance**
 
 Built as a hands-on AWS serverless learning and portfolio project.
+
+
+## AWS Architecture
+
+CloudFinance uses a serverless AWS architecture to host the frontend, authenticate users, and store financial transactions.
+
+### Architecture Components
+
+| AWS Service | Purpose |
+|---|---|
+| Amazon S3 | Stores the static website files. |
+| Amazon CloudFront | Delivers the website securely over HTTPS. |
+| Amazon Cognito | Handles user registration, email confirmation, and sign-in. |
+| AWS Amplify | Configures and connects the frontend to the backend services. |
+| AWS AppSync | Provides the GraphQL API for transaction operations. |
+| Amazon DynamoDB | Stores transaction records. |
+
+### Application Flow
+
+1. Users access the CloudFinance website through Amazon CloudFront.
+2. CloudFront retrieves static website files from a private Amazon S3 bucket.
+3. Amazon Cognito authenticates users.
+4. The frontend uses AWS Amplify libraries to communicate with the backend.
+5. AWS AppSync processes GraphQL requests.
+6. Amazon DynamoDB stores and retrieves transaction records.
+7. Owner-based authorization helps ensure users can access only their own transactions.
+
+### Architecture Benefits
+
+- Serverless design with no custom backend server to manage.
+- Secure HTTPS content delivery.
+- Managed user authentication.
+- GraphQL API integration.
+- Persistent transaction storage.
+- Designed to keep infrastructure costs low.
